@@ -26,13 +26,17 @@ function wrapIdentifierInQuotesIfNeeded(key: string): string {
  *
  */
 function renderString(str: string): string {
+  if (str === "") {
+    return `""`;
+  }
+
   if (!str) {
     return str;
   }
 
   if (typeof str !== "string") {
     throw new Error(
-      "Unable to process attribute that should have been a string, but isn't"
+      "Unable to process attribute that should have been a string, but isn't",
     );
   }
 
@@ -40,7 +44,7 @@ function renderString(str: string): string {
 
   if (lines.length === 1) return `"${escapeQuotes(str)}"`;
 
-  return `<<EOF\n${lines.map((s) => escapeQuotes(s)).join("\n")}\nEOF`;
+  return `<<EOF\n${lines.join("\n")}\nEOF`;
 }
 
 /**
@@ -318,7 +322,7 @@ export function renderDynamicBlocks(dynamic: any) {
     ([dynamicName, dynamicAttrs]: [string, any]) => {
       const res = [`dynamic "${dynamicName}" {`];
       res.push(
-        `for_each = ${renderFuzzyJsonExpression(dynamicAttrs?.for_each)}`
+        `for_each = ${renderFuzzyJsonExpression(dynamicAttrs?.for_each)}`,
       );
       if (dynamicAttrs?.iterator) {
         res.push(`iterator = ${dynamicAttrs?.iterator}`);
@@ -332,7 +336,7 @@ export function renderDynamicBlocks(dynamic: any) {
       res.push(`}`);
 
       return res.join("\n");
-    }
+    },
   );
 }
 
@@ -478,7 +482,7 @@ ${renderAttributes(terraform.cloud)}
     : undefined;
 
   const otherAttributes = Object.keys(terraform).filter(
-    (key) => !blockAttributes.includes(key)
+    (key) => !blockAttributes.includes(key),
   );
   return `terraform {
 ${requiredProviders}
@@ -526,6 +530,10 @@ function renderFuzzyJsonExpression(jsonExpression: any): string {
   }
 
   if (typeof jsonExpression === "string") {
+    if (jsonExpression === "") {
+      return `""`;
+    }
+
     if (jsonExpression.includes("${")) {
       return `"${jsonExpression}"`;
     }
@@ -571,7 +579,7 @@ export function renderSimpleAttributes(attributes: any): string {
   return Object.entries(attributes)
     .map(
       ([name, value]) =>
-        `  ${name} = ${renderFuzzyJsonExpression(value as any)}`
+        `  ${name} = ${renderFuzzyJsonExpression(value as any)}`,
     )
     .join("\n");
 }
@@ -600,7 +608,6 @@ export function renderAttributes(attributes: any): string {
         return `${name} = ${renderFuzzyJsonExpression(v)}`;
       } else if (v === null) {
         return `${name} = null`;
-        // eslint-disable-next-line no-prototype-builtins
       } else if (
         typeof v === "object" &&
         // eslint-disable-next-line no-prototype-builtins
@@ -609,7 +616,7 @@ export function renderAttributes(attributes: any): string {
         !v.hasOwnProperty("dynamic")
       ) {
         if (metaBlocks.includes(name)) {
-          return `${name} { 
+          return `${name} {
 ${renderSimpleAttributes(v)}
 }`;
         }
@@ -643,8 +650,8 @@ ${renderSimpleAttributes(v)}
       }
 
       if (block && type !== "list" && type !== "set") {
-        return `${name} { 
-${renderAttributes(value)} 
+        return `${name} {
+${renderAttributes(value)}
 }`;
       }
       if (type === "list" || type === "set") {
@@ -663,6 +670,25 @@ ${renderAttributes(value)}
         }
         if (classType === "number" || classType === "boolean") {
           return `${name} = ${value}`;
+        }
+
+        // Not sure why we're here, but there's either a bug in the provider
+        // or we have skipped the attribute to reduce the size of our provider
+        // In either case, we should try to not output [object Object] here
+        // and try a best approximation. Though, it would not work for
+        // blocks
+        if (typeof value === "object") {
+          return `
+# Warning: The following attribute is of an unexpected type. Either there's a problem with the provider
+# or CDKTF has chosen to skip generating a detailed type for this because it increases the size of the provider library significantly. 
+# Please check if this resource is included in our skip list: 
+# https://github.com/hashicorp/terraform-cdk/blob/1fb8588095a55d475dc4be28882ec4f42006ec8d/packages/%40cdktf/provider-generator/lib/get/generator/skipped-attributes.ts
+# and if not, please check with the provider authors to see if the provider schema is accurate.
+# 
+# We understand this is not ideal, so we suggest using JSON synthesis instead of HCL synthesis for this particular case.
+
+${name} = ${renderFuzzyJsonExpression(value)}
+`;
         }
       }
 

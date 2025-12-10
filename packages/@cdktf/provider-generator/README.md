@@ -5,7 +5,7 @@
 ## Usage
 
 ```sh
-yarn install @cdktf/provider-generator
+yarn add @cdktf/provider-generator
 ```
 
 ### Generate bindings
@@ -18,7 +18,7 @@ const constructsMaker = new ConstructsMaker(
     sendTelemetry("get", {
       language: payload.targetLanguage,
       ...payload.trackingPayload,
-    })
+    }),
 );
 await constructsMaker.generate();
 ```

@@ -10,7 +10,10 @@ import {
 
 // eslint-disable-next-line jsdoc/require-jsdoc
 export class S3Backend extends TerraformBackend {
-  constructor(scope: Construct, private readonly props: S3BackendConfig) {
+  constructor(
+    scope: Construct,
+    private readonly props: S3BackendConfig,
+  ) {
     super(scope, "backend", "s3");
   }
 
@@ -25,7 +28,7 @@ export class S3Backend extends TerraformBackend {
   public getRemoteStateDataSource(
     scope: Construct,
     name: string,
-    _fromStack: string
+    _fromStack: string,
   ): TerraformRemoteState {
     return new DataTerraformRemoteStateS3(scope, name, {
       ...this.props,
@@ -39,7 +42,7 @@ export class DataTerraformRemoteStateS3 extends TerraformRemoteState {
   constructor(
     scope: Construct,
     id: string,
-    config: DataTerraformRemoteStateS3Config
+    config: DataTerraformRemoteStateS3Config,
   ) {
     super(scope, id, "s3", config);
   }
@@ -69,7 +72,7 @@ export interface S3BackendConfig {
    * (Optional) List of allowed AWS account IDs to prevent potential destruction of a live environment.
    * Conflicts with forbidden_account_ids.
    */
-  readonly allowedAccountIds?: string;
+  readonly allowedAccountIds?: string[];
   /**
    * (Optional) File containing custom root and intermediate certificates.
    * Can also be set using the AWS_CA_BUNDLE environment variable.
@@ -91,7 +94,7 @@ export interface S3BackendConfig {
    * (Optional) List of forbidden AWS account IDs to prevent potential destruction of a live environment.
    * Conflicts with allowed_account_ids.
    */
-  readonly forbiddenAccountIds?: string;
+  readonly forbiddenAccountIds?: string[];
   /**
    * (Optional) URL of a proxy to use for HTTP requests when accessing the AWS API.
    * Can also be set using the HTTP_PROXY or http_proxy environment variables.

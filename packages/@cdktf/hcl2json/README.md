@@ -5,7 +5,7 @@ This is a WebAssembly wrapper for https://github.com/tmccombs/hcl2json
 ## Usage
 
 ```
-yarn install @cdktf/hcl2json
+yarn add @cdktf/hcl2json
 ```
 
 ### Parse HCL strings
@@ -63,7 +63,7 @@ import { getReferencesInExpression } from "@cdktf/hcl2json";
 (async () => {
   const variables = await getReferencesInExpression(
     "main.tf",
-    "This is a ${var.input} embedded"
+    "This is a ${var.input} embedded",
   );
   console.log(variables);
 })();

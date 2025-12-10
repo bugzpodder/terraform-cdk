@@ -1,3 +1,133 @@
+## 0.21.0
+
+**Breaking Changes**
+
+### Minimum required Node version updated to 20.9
+
+Since long-term support for Node.js 18 has ended, we updated our minimum compatible node version to 20.9.
+
+### fix
+
+- fix: Stop escaping quotes within HEREDOC [\#3890](https://github.com/hashicorp/terraform-cdk/pull/3890)
+- fix: Pass migrate-state flag through to terraform init [\#3887](https://github.com/hashicorp/terraform-cdk/pull/3887)
+- fix: #3630 Slightly improve HCL rendering for skipped attributes [\#3878](https://github.com/hashicorp/terraform-cdk/pull/3878)
+- fix: issue where archive was being closed before the file finished writing causing corrupt TerraformAssets [\#3873](https://github.com/hashicorp/terraform-cdk/pull/3873)
+
+### feat
+
+- feat!: update minimum required Node.js version to 20.19 [\#3888](https://github.com/hashicorp/terraform-cdk/pull/3888)
+- feat: Skip Provider Locking on request [\#3879](https://github.com/hashicorp/terraform-cdk/pull/3879)
+
+### chore
+
+- chore(deps): bump tar-fs from 2.1.2 to 2.1.3 [\#3897](https://github.com/hashicorp/terraform-cdk/pull/3897)
+- chore: Upgrade base image for docker image used in building CDKTF [\#3872](https://github.com/hashicorp/terraform-cdk/pull/3872)
+- chore: Upgrading dependencies [\#3871](https://github.com/hashicorp/terraform-cdk/pull/3871)
+- chore(deps): bump the github-actions-backward-compatible group with 6 updates [\#3869](https://github.com/hashicorp/terraform-cdk/pull/3869)
+- chore(ci): use Dependabot to keep GitHub Actions updated [\#3867](https://github.com/hashicorp/terraform-cdk/pull/3867)
+- chore: add comments to docs [\#3863](https://github.com/hashicorp/terraform-cdk/pull/3863)
+
+## 0.20.12
+
+### feat
+
+- feat: Upgrade JSII [\#3837](https://github.com/hashicorp/terraform-cdk/pull/3837)
+
+### chore
+
+- chore: add missing dependency on `fs-extra` to `@cdktf/hcl-tools` [\#3854](https://github.com/hashicorp/terraform-cdk/pull/3854)
+- chore: Upgrade node-pty-prebuilt to support Node LTS [\#3851](https://github.com/hashicorp/terraform-cdk/pull/3851)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3847](https://github.com/hashicorp/terraform-cdk/pull/3847)
+- chore(docs): Update example for remote backend to show cloud backend [\#3833](https://github.com/hashicorp/terraform-cdk/pull/3833)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3828](https://github.com/hashicorp/terraform-cdk/pull/3828)
+- chore: Update docker container with latest version of node and JSII [\#3821](https://github.com/hashicorp/terraform-cdk/pull/3821)
+- chore: Upgrade archiver version to 7.0.1 [\#3818](https://github.com/hashicorp/terraform-cdk/pull/3818)
+- chore: Upgrade dependencies for lib [\#3815](https://github.com/hashicorp/terraform-cdk/pull/3815)
+- chore: Use tmccombs/hcl2json and fix go examples [\#3814](https://github.com/hashicorp/terraform-cdk/pull/3814)
+- chore: Remove web team from CODEOWNERS for content directories [\#3811](https://github.com/hashicorp/terraform-cdk/pull/3811)
+- chore: Upgrade dependencies for all [\#3800](https://github.com/hashicorp/terraform-cdk/pull/3800)
+- chore: update changelog [\#3798](https://github.com/hashicorp/terraform-cdk/pull/3798)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3795](https://github.com/hashicorp/terraform-cdk/pull/3795)
+- chore: Upgrade dependencies for all [\#3789](https://github.com/hashicorp/terraform-cdk/pull/3789)
+- chore: Upgrade dependencies for lib [\#3776](https://github.com/hashicorp/terraform-cdk/pull/3776)
+- chore: Upgrade dependencies for util [\#3767](https://github.com/hashicorp/terraform-cdk/pull/3767)
+- chore: Upgrade dependencies for cli [\#3765](https://github.com/hashicorp/terraform-cdk/pull/3765)
+
+### fix
+
+- fix: Upgrade dependencies to remove vulnerable version of micromatch [\#3844](https://github.com/hashicorp/terraform-cdk/pull/3844)
+- fix: Upgrade version of esbuild without security vuln [\#3843](https://github.com/hashicorp/terraform-cdk/pull/3843)
+- fix: Security warning on version of Axios [\#3841](https://github.com/hashicorp/terraform-cdk/pull/3841)
+- fix(examples): The Complex iterators example for C# that has been broken for a while [\#3840](https://github.com/hashicorp/terraform-cdk/pull/3840)
+- fix: Update slack action usage for slack action v2 [\#3802](https://github.com/hashicorp/terraform-cdk/pull/3802)
+- fix: always save terraform credentials [\#3785](https://github.com/hashicorp/terraform-cdk/pull/3785)
+- fix(lib): correct the concat method in TokenizedStringFragments [\#3772](https://github.com/hashicorp/terraform-cdk/pull/3772)
+
+## 0.20.11
+
+### fix
+
+- fix: punycode deprecation warning [\#3792](https://github.com/hashicorp/terraform-cdk/pull/3792)
+
+### chore
+
+- chore: Add web presence ability to approve PRs to website files [\#3788](https://github.com/hashicorp/terraform-cdk/pull/3788)
+- chore: release 0.20.11 [\#3786](https://github.com/hashicorp/terraform-cdk/pull/3786)
+- chore: Upgrade dependencies for all [\#3780](https://github.com/hashicorp/terraform-cdk/pull/3780)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3770](https://github.com/hashicorp/terraform-cdk/pull/3770)
+- chore: Upgrade dependencies for all [\#3768](https://github.com/hashicorp/terraform-cdk/pull/3768)
+
+## 0.20.10
+
+### fix
+
+- fix(provider-generator): Skip attributes for oracle/oci provider that use the unsupported mapmapmap type [\#3749](https://github.com/hashicorp/terraform-cdk/pull/3749)
+- fix: use 'go env GOROOT' when GOROOT env is missing [\#3745](https://github.com/hashicorp/terraform-cdk/pull/3745)
+- fix: run lint in Docker image to use same Node version as in other CI jobs [\#3742](https://github.com/hashicorp/terraform-cdk/pull/3742)
+
+### chore
+
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3757](https://github.com/hashicorp/terraform-cdk/pull/3757)
+- chore: Upgrade dependencies for all [\#3756](https://github.com/hashicorp/terraform-cdk/pull/3756)
+- chore: update version of docs conversion tool [\#3750](https://github.com/hashicorp/terraform-cdk/pull/3750)
+- chore: increase time the docs conversion might take [\#3748](https://github.com/hashicorp/terraform-cdk/pull/3748)
+- chore: Upgrade dependencies for all [\#3709](https://github.com/hashicorp/terraform-cdk/pull/3709)
+
+## 0.20.9
+
+### feat
+
+- feat(provider-generator): Skip definition attribute for aws_quicksight_analysis.definition data source [\#3725](https://github.com/hashicorp/terraform-cdk/pull/3725)
+
+### fix
+
+- fix(lib): render empty string as quotes [\#3683](https://github.com/hashicorp/terraform-cdk/pull/3683)
+- fix(lib): Correct types for allowedAccountIds & forbiddenAccountIds in S3Backend [\#3669](https://github.com/hashicorp/terraform-cdk/pull/3669)
+- fix(provider-generator): fix collision for Go for resources named version [\#3670](https://github.com/hashicorp/terraform-cdk/pull/3670)
+- fix(release): Don't validate single commit for semanticity [\#3715](https://github.com/hashicorp/terraform-cdk/pull/3715)
+
+### chore
+
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3714](https://github.com/hashicorp/terraform-cdk/pull/3714)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3700](https://github.com/hashicorp/terraform-cdk/pull/3700)
+- chore: add extra pr for a catch-all package update [\#3699](https://github.com/hashicorp/terraform-cdk/pull/3699)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3693](https://github.com/hashicorp/terraform-cdk/pull/3693)
+- chore: Upgrade dependencies for JSII [\#3692](https://github.com/hashicorp/terraform-cdk/pull/3692)
+- chore: Upgrade dependencies for util [\#3691](https://github.com/hashicorp/terraform-cdk/pull/3691)
+- chore: Upgrade dependencies for cli [\#3690](https://github.com/hashicorp/terraform-cdk/pull/3690)
+- chore: Upgrade dependencies for lib [\#3689](https://github.com/hashicorp/terraform-cdk/pull/3689)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3682](https://github.com/hashicorp/terraform-cdk/pull/3682)
+- chore: Upgrade dependencies for JSII [\#3679](https://github.com/hashicorp/terraform-cdk/pull/3679)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3672](https://github.com/hashicorp/terraform-cdk/pull/3672)
+- chore: added index pages for each library to the docs [\#3671](https://github.com/hashicorp/terraform-cdk/pull/3671)
+- chore: reorganize API documentation [\#3668](https://github.com/hashicorp/terraform-cdk/pull/3668)
+- chore(deps): pin trusted workflows based on HashiCorp TSCCR [\#3666](https://github.com/hashicorp/terraform-cdk/pull/3666)
+- chore: Upgrade dependencies for util [\#3650](https://github.com/hashicorp/terraform-cdk/pull/3650)
+- chore: Upgrade dependencies for cli [\#3649](https://github.com/hashicorp/terraform-cdk/pull/3649)
+- chore: Upgrade dependencies for JSII [\#3648](https://github.com/hashicorp/terraform-cdk/pull/3648)
+- chore: Upgrade dependencies for lib [\#3647](https://github.com/hashicorp/terraform-cdk/pull/3647)
+- chore(hcl2cdk): fix yarn command in Readme.md [\#3624](https://github.com/hashicorp/terraform-cdk/pull/3624)
+
 ## 0.20.8
 
 ### feat
@@ -1693,7 +1823,7 @@ const bucket = new s3.S3Bucket(this, "bucket");
 const firstRuleStage = Fn.lookup(
   bucket.lifecycleRule("0").tags,
   "stage",
-  "no-stage"
+  "no-stage",
 );
 const firstRuleTags = bucket.lifecycleRule("0").tags;
 

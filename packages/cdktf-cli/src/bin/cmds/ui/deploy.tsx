@@ -34,7 +34,7 @@ export const DeploySummary = ({
       created: 0,
       updated: 0,
       destroyed: 0,
-    } as any
+    } as any,
   );
 
   return (
@@ -67,6 +67,7 @@ interface DeployConfig {
   noColor?: boolean;
   migrateState?: boolean;
   skipSynth?: boolean;
+  skipProviderLock?: boolean;
 }
 
 export const Deploy = ({
@@ -85,6 +86,7 @@ export const Deploy = ({
   noColor,
   migrateState,
   skipSynth,
+  skipProviderLock,
 }: DeployConfig): React.ReactElement => {
   const [outputs, setOutputs] = useState<NestedTerraformOutputs>();
   const { status, logEntries } = useCdktfProject(
@@ -102,13 +104,14 @@ export const Deploy = ({
         noColor,
         migrateState,
         skipSynth,
+        skipProviderLock,
       });
 
       if (onOutputsRetrieved) {
         onOutputsRetrieved(project.outputsByConstructId);
       }
       setOutputs(project.outputsByConstructId);
-    }
+    },
   );
 
   const bottomBar =
